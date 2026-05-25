@@ -1,6 +1,15 @@
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { logout } from '../../features/auth/authSlice'
 
 function Header() {
+  const firstName = useSelector(function(state) { return state.auth.firstName })
+  const dispatch = useDispatch()
+
+  function handleLogout() {
+    dispatch(logout())
+  }
+
   return (
     <nav className="main-nav">
       <Link className="main-nav-logo" to="/">
@@ -12,10 +21,23 @@ function Header() {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>
-        <Link className="main-nav-item" to="/login">
-          <i className="fa fa-user-circle"></i>
-          Sign In
-        </Link>
+        {firstName ? (
+          <>
+            <Link className="main-nav-item" to="/profile">
+              <i className="fa fa-user-circle"></i>
+              {firstName}
+            </Link>
+            <Link className="main-nav-item" to="/" onClick={handleLogout}>
+              <i className="fa fa-sign-out"></i>
+              Sign Out
+            </Link>
+          </>
+        ) : (
+          <Link className="main-nav-item" to="/login">
+            <i className="fa fa-user-circle"></i>
+            Sign In
+          </Link>
+        )}
       </div>
     </nav>
   )
