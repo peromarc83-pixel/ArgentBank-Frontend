@@ -60,19 +60,30 @@ function Profile() {
         <div className="header">
           <h1>Welcome back<br />{firstName} {lastName}!</h1>
           {modeEdition ? (
-            <div>
-              <input
-                type="text"
-                value={nouveauUserName}
-                onChange={function(e) { setNouveauUserName(e.target.value) }}
-              />
-              {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
-              <button className="edit-button" onClick={handleSave}>Save</button>
-              <button className="edit-button" onClick={handleCancel}>Cancel</button>
-            </div>
-          ) : (
-            <button className="edit-button" onClick={handleEditClick}>Edit Name</button>
-          )}
+        <div>
+    <div className="input-wrapper">
+      <label>User name :</label>
+      <input
+        type="text"
+        value={nouveauUserName}
+        onChange={function(e) { setNouveauUserName(e.target.value) }}
+      />
+    </div>
+    <div className="input-wrapper">
+      <label>First name :</label>
+      <input type="text" value={firstName} disabled />
+    </div>
+    <div className="input-wrapper">
+      <label>Last name :</label>
+      <input type="text" value={lastName} disabled />
+    </div>
+    {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
+    <button className="edit-button" onClick={handleSave}>Save</button>
+    <button className="edit-button" onClick={handleCancel}>Cancel</button>
+  </div>
+) : (
+  <button className="edit-button" onClick={handleEditClick}>Edit Name</button>
+)}
         </div>
         <h2 className="sr-only">Accounts</h2>
         <Account

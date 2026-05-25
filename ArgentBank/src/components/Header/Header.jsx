@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { logout } from '../../features/auth/authSlice'
 
 function Header() {
-  const firstName = useSelector(function(state) { return state.auth.firstName })
+const userName = useSelector(function(state) { return state.auth.userName })
   const dispatch = useDispatch()
 
   function handleLogout() {
@@ -21,11 +21,11 @@ function Header() {
         <h1 className="sr-only">Argent Bank</h1>
       </Link>
       <div>
-        {firstName ? (
+        {userName ? (
           <>
             <Link className="main-nav-item" to="/profile">
               <i className="fa fa-user-circle"></i>
-              {firstName}
+              {userName}
             </Link>
             <Link className="main-nav-item" to="/" onClick={handleLogout}>
               <i className="fa fa-sign-out"></i>
