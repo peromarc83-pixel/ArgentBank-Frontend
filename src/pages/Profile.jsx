@@ -58,11 +58,11 @@ function Profile() {
       <Header />
       <main className="main bg-dark">
         <div className="header">
-          <h1>Welcome back<br />{firstName} {lastName}!</h1>
+          <h1>Bienvenue à nouveau,<br />{firstName} {lastName} !</h1>
           {modeEdition ? (
         <div>
     <div className="input-wrapper">
-      <label>User name :</label>
+      <label>Nom d'utilisateur :</label>
       <input
         type="text"
         value={nouveauUserName}
@@ -70,36 +70,38 @@ function Profile() {
       />
     </div>
     <div className="input-wrapper">
-      <label>First name :</label>
+      <label>Prénom :</label>
       <input type="text" value={firstName} disabled />
     </div>
     <div className="input-wrapper">
-      <label>Last name :</label>
+      <label>Nom :</label>
       <input type="text" value={lastName} disabled />
     </div>
     {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
-    <button className="edit-button" onClick={handleSave}>Save</button>
-    <button className="edit-button" onClick={handleCancel}>Cancel</button>
+    <div className="edit-button-group">
+      <button className="edit-button" onClick={handleSave}>Enregistrer</button>
+      <button className="edit-button" onClick={handleCancel}>Annuler</button>
+    </div>
   </div>
 ) : (
-  <button className="edit-button" onClick={handleEditClick}>Edit Name</button>
+  <button className="edit-button" onClick={handleEditClick}>Modifier le nom</button>
 )}
         </div>
         <h2 className="sr-only">Accounts</h2>
         <Account
           title="Argent Bank Checking (x8349)"
           amount="$2,082.79"
-          description="Available Balance"
+          description="Solde disponible"
         />
         <Account
           title="Argent Bank Savings (x6712)"
           amount="$10,928.42"
-          description="Available Balance"
+          description="Solde disponible"
         />
         <Account
           title="Argent Bank Credit Card (x8349)"
           amount="$184.30"
-          description="Current Balance"
+          description="Solde actuel"
         />
       </main>
       <Footer />

@@ -60,10 +60,10 @@ function Login() {
       <main className="main bg-dark">
         <section className="sign-in-content">
           <i className="fa fa-user-circle sign-in-icon"></i>
-          <h1>Sign In</h1>
+          <h1>Se connecter</h1>
           <form onSubmit={handleSubmit}>
             <div className="input-wrapper">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Nom d'utilisateur</label>
               <input
                 type="email"
                 id="email"
@@ -72,7 +72,7 @@ function Login() {
               />
             </div>
             <div className="input-wrapper">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Mot de passe</label>
               <input
                 type="password"
                 id="password"
@@ -82,10 +82,10 @@ function Login() {
             </div>
             <div className="input-remember">
               <input type="checkbox" id="remember-me" />
-              <label htmlFor="remember-me">Remember me</label>
+              <label htmlFor="remember-me">Souviens-toi de moi</label>
             </div>
             {erreur && <p style={{ color: 'red' }}>{erreur}</p>}
-            <button className="sign-in-button">Sign In</button>
+            <button className="sign-in-button">Se connecter</button>
           </form>
         </section>
       </main>

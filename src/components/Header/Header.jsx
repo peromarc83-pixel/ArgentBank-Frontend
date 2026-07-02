@@ -29,13 +29,13 @@ const userName = useSelector(function(state) { return state.auth.userName })
             </Link>
             <Link className="main-nav-item" to="/" onClick={handleLogout}>
               <i className="fa fa-sign-out"></i>
-              Sign Out
+              Se déconnecter
             </Link>
           </>
         ) : (
           <Link className="main-nav-item" to="/login">
             <i className="fa fa-user-circle"></i>
-            Sign In
+           Se connecter
           </Link>
         )}
       </div>
