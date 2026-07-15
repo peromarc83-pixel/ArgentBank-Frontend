@@ -1,13 +1,14 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { loginSuccess, setUserProfile } from '../features/auth/authSlice'
+import { setEmail, loginSuccess, setUserProfile } from '../redux/auth/authSlice'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 
 function Login() {
-  const [email, setEmail] = useState('')
+  const email = useSelector(function(state) { return state.auth.email })
   const [password, setPassword] = useState('')
+  const [souvienstoi, setSouvienstoi] = useState(false)
   const [erreur, setErreur] = useState(null)
 
   const dispatch = useDispatch()
@@ -32,7 +33,7 @@ function Login() {
     }
 
     const token = donneesLogin.body.token
-    dispatch(loginSuccess({ token: token }))
+    dispatch(loginSuccess({ token: token, email: email, rememberMe: souvienstoi }))
 
     // Étape 2 : récupérer le profil utilisateur
     const reponseProfil = await fetch('http://localhost:3001/api/v1/user/profile', {
@@ -68,7 +69,7 @@ function Login() {
                 type="email"
                 id="email"
                 value={email}
-                onChange={function(e) { setEmail(e.target.value) }}
+                onChange={function(e) { dispatch(setEmail(e.target.value)) }}
               />
             </div>
             <div className="input-wrapper">
@@ -81,7 +82,12 @@ function Login() {
               />
             </div>
             <div className="input-remember">
-              <input type="checkbox" id="remember-me" />
+              <input
+                type="checkbox"
+                id="remember-me"
+                checked={souvienstoi}
+                onChange={function(e) { setSouvienstoi(e.target.checked) }}
+              />
               <label htmlFor="remember-me">Souviens-toi de moi</label>
             </div>
             {erreur && <p style={{ color: 'red' }}>{erreur}</p>}

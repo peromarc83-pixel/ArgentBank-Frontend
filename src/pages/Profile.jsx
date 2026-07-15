@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setUserProfile } from '../features/auth/authSlice'
+import { setUserProfile } from '../redux/auth/authSlice'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import Account from '../components/Account/Account'
