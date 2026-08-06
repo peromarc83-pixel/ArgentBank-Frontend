@@ -17,8 +17,7 @@ function Login() {
   async function handleSubmit(event) {
     event.preventDefault()
     setErreur(null)
-
-    // Étape 1 : connexion → récupérer le token
+   
     const reponseLogin = await fetch('http://localhost:3001/api/v1/user/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -35,7 +34,7 @@ function Login() {
     const token = donneesLogin.body.token
     dispatch(loginSuccess({ token: token, email: email, rememberMe: souvienstoi }))
 
-    // Étape 2 : récupérer le profil utilisateur
+   
     const reponseProfil = await fetch('http://localhost:3001/api/v1/user/profile', {
       method: 'GET',
       headers: {
@@ -51,7 +50,7 @@ function Login() {
       userName: donneesProfil.body.userName,
     }))
 
-    // Étape 3 : rediriger vers le profil
+    
     navigate('/profile')
   }
 
